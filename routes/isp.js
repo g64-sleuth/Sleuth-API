@@ -9,23 +9,25 @@ router.get('/', function(req, res, next) {
     res.sendStatus(200).json(isp);
   })
 });
+router.get('/dlavg/:name', (req,res)=>{
+	select each entry of that name, find avg (sum/length)
+})
 
-router.get('/:id', (req, res) => {
-  const id = req.params.id;
-  knex('isp')
-  .select()
-  .where('id', id)
-  .first()
-  .then(isp => {
-    res.sendStatus(200).json(isp);
-  })
-});
+// router.get('/:id', (req, res) => {
+//   const id = req.params.id;
+//   knex('isp')
+//   .select()
+//   .where('id', id)
+//   .first()
+//   .then(isp => {
+//     res.sendStatus(200).json(isp);
+//   })
+// });
 
 router.post('/', (req, res) => {
   const isp = {
     name = req.body.name,
     dl_avg = req.body.dl_avg,
-    up_avg = req.body.up_avg
   }
   knex('isp').insert(isp, 'id')
   .then(ids => {

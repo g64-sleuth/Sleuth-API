@@ -5,7 +5,6 @@ exports.up = function(knex, Promise) {
       table.increments().primary;
       table.text('name');
       table.decimal('dl_avg');
-      table.decimal('up_avg');
     })
   ])
 };
