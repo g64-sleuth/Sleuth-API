@@ -6,9 +6,10 @@ function getDlAverage(req,res,callback){
   return
 }
 
-router.get('/', function(req, res, next) {
+router.get('/:ip', function(req, res, next) {
   knex('tests')
   .select
+	.where('ip', ip)
   .then(tests => {
     res.sendStatus(200).json(tests);
   })
@@ -28,28 +29,10 @@ router.get('/:name', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-  // const tests = {
-  //   ip = req.body.ip,
-  //   dl_speed = req.body.dl_speed,
-  //   up_speed = req.body.up_speed,
-  //   timestamp = req.body.timestamp,
-  //   name = req.body.name,
-  //   lat = req.body.lat,
-  //   long = req.body.long
-  // }
   knex('tests').insert(req.body)
   .then(() => {
     res.sendStatus(200).json(tests);
   })
 });
-//
-// router.put('/:id', (req, res) => {
-//   knex('tests')
-//   .where('id', req.params.id)
-//   .update(tests, 'id')
-//   .then(() =>
-//   res.sendStatus(200).json(tests);
-//   })
-// });
 
 module.exports = router;
