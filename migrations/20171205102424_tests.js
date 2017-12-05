@@ -6,10 +6,10 @@ exports.up = function(knex, Promise) {
       table.text('ip');
       table.decimal('dl_speed', [10], [2]);
       table.dateTime('timestamp');
-      table.integer('isp_id');
+      table.text('name');
       table.text('lat');
       table.text('long');
-  }))
+  })
   ])
 };
 
