@@ -2,11 +2,8 @@ var express = require('express');
 var router = express.Router();
 const knex = require('../db/knex');
 
-function getDlAverage(req,res,callback){
-  return
-}
 
-router.get('/:ip', function(req, res, next) {
+router.get('/:ip', (req, res) => {
   knex('tests')
   .select
 	.where('ip', ip)
@@ -20,17 +17,18 @@ router.get('/:name', (req, res) => {
   knex('tests')
   .select()
   .where('name', name)
-  .then(name => {
-    getDlAverage(req, res, (data))
-
-
+  .then(data => {
+		let reducer = (total, number)=>total + number
+	  return (data.reduce(reducer)/data.length)
+		.then(() =>{
     res.sendStatus(200).json(tests);
+		})
   })
 });
 
 router.post('/', (req, res) => {
   knex('tests').insert(req.body)
-  .then(() => {
+  .then( => {
     res.sendStatus(200).json(tests);
   })
 });
