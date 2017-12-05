@@ -7,11 +7,10 @@ module.exports = {
     client: 'pg',
     connection: {
       filename: 'postgres://localhost/speedtest'
-    },
-
+    }
+},
     production: {
       client: 'pg',
       connection: process.env.DATABASE_URL
     }
-  }
 };
