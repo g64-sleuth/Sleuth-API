@@ -4,6 +4,7 @@ const knex = require('../db/knex');
 
 
 router.get('/:ip', (req, res) => {
+	ip = req.params.ip
   knex('tests')
   .select
 	.where('ip', ip)
@@ -13,7 +14,7 @@ router.get('/:ip', (req, res) => {
 });
 
 router.get('/:name', (req, res) => {
-  const name = req.params.id;
+  const name = req.params.name;
   knex('tests')
   .select()
   .where('name', name)
