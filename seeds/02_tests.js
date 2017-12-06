@@ -22,7 +22,7 @@ exports.seed = function(knex, Promise) {
         {
           ip: '128.177.113.102',
           dl_speed: '35',
-          name: 'Comcast',
+          name: 'XFINITY',
           lat: '',
           long: ''
         },
