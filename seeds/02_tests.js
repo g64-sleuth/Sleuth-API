@@ -13,21 +13,21 @@ exports.seed = function(knex, Promise) {
           long: '-104.9995'
         },
         {
-          ip: '',
+          ip: '128.177.113.102',
           dl_speed: '65',
           name: 'Zayo Bandwidth',
           lat: '',
           long: ''
         },
         {
-          ip: '',
+          ip: '128.177.113.102',
           dl_speed: '35',
           name: 'Comcast',
           lat: '',
           long: ''
         },
         {
-          ip: '',
+          ip: '128.177.113.102',
           dl_speed: '2',
           name: 'Century Link',
           lat: '',
