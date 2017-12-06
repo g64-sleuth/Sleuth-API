@@ -40,7 +40,7 @@ router.get('/isp/:name', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-  req.body.dateTime = new Date()
+  req.body.timestamp = new Date()
   knex('tests')
 	.insert(req.body)
   .returning('*')

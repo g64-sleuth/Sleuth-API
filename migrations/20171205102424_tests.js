@@ -4,7 +4,7 @@ exports.up = function(knex, Promise) {
     knex.schema.createTable('tests', (table) => {
       table.increments().primary;
       table.text('ip');
-      table.decimal('dl_speed', [10], [2]);
+      table.string('dl_speed');
       table.dateTime('timestamp');
       table.text('name');
       table.text('lat');
