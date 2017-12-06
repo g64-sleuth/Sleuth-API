@@ -22,8 +22,6 @@ router.get('/:name', (req, res) => {
   .where('name', name)
   .then(name => {
     getDlAverage(req, res, (data))
-
-
     res.sendStatus(200).json(tests);
   })
 });
