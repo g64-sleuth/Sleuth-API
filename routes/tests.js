@@ -24,10 +24,15 @@ router.get('/:name', (req, res) => {
   .where('name', name)
   .then(data => {
 		let reducer = (total, number)=>total + number
-	  return (data.reduce(reducer)/data.length)
-		.then(() =>{
-    res.status(200).json(tests);
+    let newData = (data.reduce(reducer)/data.length)
+    console.log(newData);
+    return newData
+		.then((newData) =>{
+    res.status(200).json(newData);
 		})
+    .catch(err=>{
+      res.status(400).send(err)
+    })
   })
 });
 
@@ -38,6 +43,9 @@ router.post('/', (req, res) => {
   .returning('*')
   .then((tests) => {
     res.status(200).json(tests);
+  })
+  .catch(err=>{
+    res.status(400).send(err)
   })
 });
 
