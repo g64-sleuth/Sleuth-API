@@ -17,17 +17,20 @@ router.get('/:ip', (req, res) => {
 	})
 });
 
-router.get('/:name', (req, res) => {
+router.get('/isp/:name', (req, res) => {
   const name = req.params.name;
+  console.log(name);
   knex('tests')
   .select()
   .where('name', name)
   .then(data => {
-		let reducer = (total, number)=>total + number
-    let newData = (data.reduce(reducer)/data.length)
-    console.log(newData);
-    return newData
-		.then((newData) =>{
+    let newData = {
+      'name': data[0].name,
+      'dl_avg': 0,
+    }
+    getSpeedMedian(data)
+    .then((medianSpeed) =>{
+    newData.dl_avg = medianSpeed
     res.status(200).json(newData);
 		})
     .catch(err=>{
@@ -49,4 +52,18 @@ router.post('/', (req, res) => {
   })
 });
 
+
+function getSpeedMedian(objectArray){
+  let data = []
+  objectArray.forEach(function(object) {
+      data.push(Number(object.dl_speed))
+  });
+
+  let sorted = new Promise(function(resolve,reject){
+    let reducer = (total, number)=>total + number
+    let newData = (data.reduce(reducer)/data.length)
+    resolve(newData)
+  })
+return sorted
+}
 module.exports = router;
