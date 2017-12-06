@@ -32,8 +32,10 @@ router.get('/:name', (req, res) => {
 });
 
 router.post('/', (req, res) => {
+  req.body.dateTime = new Date()
   knex('tests')
-	.insert(req.body, "*")
+	.insert(req.body)
+  .returning('*')
   .then((tests) => {
     res.status(200).json(tests);
   })

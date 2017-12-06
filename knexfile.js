@@ -5,9 +5,8 @@ module.exports = {
 
   development: {
     client: 'pg',
-    connection: {
-      filename: 'postgres://localhost/speedtest'
-    }
+    connection: 'postgres://localhost/sleuth'
+
 },
     production: {
       client: 'pg',
