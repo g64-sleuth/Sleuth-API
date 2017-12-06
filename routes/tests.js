@@ -4,13 +4,17 @@ const knex = require('../db/knex');
 
 
 router.get('/:ip', (req, res) => {
-	ip = req.params.ip
+	let ip = req.params.ip
+	console.log(ip)
   knex('tests')
-  .select
+  .select()
 	.where('ip', ip)
   .then(tests => {
-    res.sendStatus(200).json(tests);
+    res.json(tests);
   })
+	.catch(err=>{
+		res.status(400).send(err)
+	})
 });
 
 router.get('/:name', (req, res) => {
@@ -22,15 +26,16 @@ router.get('/:name', (req, res) => {
 		let reducer = (total, number)=>total + number
 	  return (data.reduce(reducer)/data.length)
 		.then(() =>{
-    res.sendStatus(200).json(tests);
+    res.status(200).json(tests);
 		})
   })
 });
 
 router.post('/', (req, res) => {
-  knex('tests').insert(req.body)
-  .then( => {
-    res.sendStatus(200).json(tests);
+  knex('tests')
+	.insert(req.body, "*")
+  .then((tests) => {
+    res.status(200).json(tests);
   })
 });
 
