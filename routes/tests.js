@@ -2,34 +2,40 @@ var express = require('express');
 var router = express.Router();
 const knex = require('../db/knex');
 
-function getDlAverage(req,res,callback){
-  return
-}
 
-router.get('/:ip', function(req, res, next) {
+router.get('/:ip', (req, res) => {
+	let ip = req.params.ip
+	console.log(ip)
   knex('tests')
-  .select
+  .select()
 	.where('ip', ip)
   .then(tests => {
-    res.sendStatus(200).json(tests);
+    res.json(tests);
   })
+	.catch(err=>{
+		res.status(400).send(err)
+	})
 });
 
 router.get('/:name', (req, res) => {
-  const name = req.params.id;
+  const name = req.params.name;
   knex('tests')
   .select()
   .where('name', name)
-  .then(name => {
-    getDlAverage(req, res, (data))
-    res.sendStatus(200).json(tests);
+  .then(data => {
+		let reducer = (total, number)=>total + number
+	  return (data.reduce(reducer)/data.length)
+		.then(() =>{
+    res.status(200).json(tests);
+		})
   })
 });
 
 router.post('/', (req, res) => {
-  knex('tests').insert(req.body)
-  .then(() => {
-    res.sendStatus(200).json(tests);
+  knex('tests')
+	.insert(req.body, "*")
+  .then((tests) => {
+    res.status(200).json(tests);
   })
 });
 
