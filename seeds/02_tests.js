@@ -9,6 +9,7 @@ exports.seed = function(knex, Promise) {
           ip: '128.177.113.102',
           dl_speed: '60',
           name: 'Zayo Bandwidth',
+          timestamp: new Date(),
           lat: '39.7525',
           long: '-104.9995'
         },
@@ -16,6 +17,7 @@ exports.seed = function(knex, Promise) {
           ip: '128.177.113.102',
           dl_speed: '65',
           name: 'Zayo Bandwidth',
+          timestamp: new Date(),
           lat: '',
           long: ''
         },
@@ -23,6 +25,7 @@ exports.seed = function(knex, Promise) {
           ip: '128.177.113.102',
           dl_speed: '35',
           name: 'XFINITY',
+          timestamp: new Date(),
           lat: '',
           long: ''
         },
@@ -30,6 +33,7 @@ exports.seed = function(knex, Promise) {
           ip: '128.177.113.102',
           dl_speed: '2',
           name: 'Century Link',
+          timestamp: new Date(),
           lat: '',
           long: ''
         },
