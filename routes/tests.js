@@ -39,6 +39,23 @@ router.get('/isp/:name', (req, res) => {
   })
 });
 
+router.get('/service/isps', (req, res) => {
+  console.log('in');
+  knex('tests')
+  .distinct('name')
+  .select('name')
+  .then(data => {
+    console.log(data);
+    let newData = {
+      name: data
+    }
+    res.status(200).json(newData);
+		})
+    .catch(err=>{
+      res.status(400).send(err)
+    })
+});
+
 router.post('/', (req, res) => {
   req.body.timestamp = new Date()
   knex('tests')
